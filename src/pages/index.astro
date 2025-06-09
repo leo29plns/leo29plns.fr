@@ -1,16 +1,38 @@
 ---
-
+import { codeLoader } from "../core/codeLoader";
+const highlightedCode = await codeLoader();
+import 'highlight.js/styles/github-dark.css';
+import Base from "../layouts/Base/Base.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
+<Base title="Accueil">
+		<!-- <h1 aria-label="Léo PLANUS, dévelppeur web">
+			<code class="title">
+				<span class="green">&#96;</span><span class="orange">&#36;&#123;</span>Léo<span class="orange">.</span>PLANUS<span class="orange">&#125;</span> <span class="green">Développeur web&#96;</span>
+			</code>
+		</h1> -->
+
+		<pre class="cv-code"><code class="hljs language-typescript" set:html={highlightedCode}></code></pre>
 	</body>
-</html>
+</Base>
+
+<style>
+	.title {
+		font-family: monospace;
+		font-size: 2em;
+		color: #052E2E;
+
+		.green {
+			color: #85B300;
+		}
+
+		.orange {
+			color: #FA8E40;
+		}
+	}
+
+	.cv-code {
+		font-family: 'Fira Code', monospace;
+		font-size: 1.5em;
+	}
+</style>

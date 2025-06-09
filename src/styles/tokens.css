@@ -1,0 +1,37 @@
+:root {
+	--debian-100: #fff1f1;
+	--debian-200: #ffc2c3;
+	--debian-300: #ff8d93;
+	--debian-400: #ee5b6a;
+	--debian-500: #ca384d;
+	--debian-600: #a80030;
+	--debian-700: #8f0028;
+	--debian-800: #70001d;
+	--debian-900: #500012;
+	--debian-1000: #360009;
+	--gray-100: #ffffff;
+	--gray-200: #e6e6e6;
+	--gray-300: #cccccc;
+	--gray-400: #b3b3b3;
+	--gray-500: #999999;
+	--gray-600: #808080;
+	--gray-700: #666666;
+	--gray-800: #4d4d4d;
+	--gray-900: #333333;
+	--gray-1000: #1b1b1b;
+	--color-brand: var(--debian-600);
+	--color-bg: var(--gray-100);
+	--color-text: var(--gray-900);
+	--font-albert-sans: "Albert Sans", sans-serif;
+	--font-fira-code: "Fira Code", monospace;
+	--scale-10: 4.5rem;
+  --scale-09: 4rem;
+  --scale-08: 3rem;
+  --scale-07: 2.5rem;
+  --scale-06: 2rem;
+  --scale-05: 1.5rem;
+  --scale-04: 1.25rem;
+  --scale-03: 1rem;
+  --scale-02: 0.875rem;
+  --scale-01: 0.75rem;
+}

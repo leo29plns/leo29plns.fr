@@ -6,9 +6,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "biome lint --write .",
+    "lint:fix": "biome check --write ."
   },
   "dependencies": {
-    "astro": "^5.9.1"
+    "@astrojs/svelte": "^7.1.0",
+    "@xterm/xterm": "^5.5.0",
+    "astro": "^5.9.1",
+    "highlight.js": "^11.11.1",
+    "svelte": "^5.33.18",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "biome": "^0.3.3"
   }
 }

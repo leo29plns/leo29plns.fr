@@ -1,0 +1,129 @@
+import { z } from 'z-cv';
+import { Developer, Project, Formation, Experience, ExperienceTimeline, Certifications } from 'cvkit';
+import { Insight } from 'cvkit/insight';
+import { serializeAs } from 'cvkit/serialize';
+import { Formats } from 'cvkit/types';
+
+/**
+ * Informations d'identité
+ * @author Léo PLANUS
+ * @license MIT
+ */
+const identity = {
+  id: 'leo.planus',
+  name: 'Léo Planus',
+  alias: '${Léo.PLANUS}',
+  languages: ['fr', 'en'] as const,
+  availableFor: 'alternance',
+  location: 'Île-de-France',
+  email: 'leo.planus@edu.esiee.fr',
+  phone: '+33 6 37 05 62 03',
+} as const;
+
+/**
+ * Validation de la stack technique
+ */
+const StackSchema = z
+  .object({
+    frontend: z.array(z.string()),
+    backend: z.array(z.string()),
+    devops: z.array(z.string()),
+  })
+  .brand('Stack');
+
+const techStack = StackSchema.parse({
+  frontend: ['TypeScript', 'React', 'Figma', 'A11y'],
+  backend: ['NestJS', 'Java', 'MongoDB', 'PostgreSQL', 'Redis', 'Socket.io', 'Python', 'Symfony'],
+  devops: ['Docker', 'K8s', 'CI/CD', 'Proxmox', 'GitOps'],
+});
+
+interface HumanProfile extends Developer {
+  passions: readonly string[];
+  values: readonly string[];
+  introspect(): Promise<Insight[]>;
+}
+
+/**
+ * Classe principale
+ */
+class Léo_PLANUS implements HumanProfile {
+  readonly id = identity.id;
+  readonly languages = identity.languages;
+  readonly passions = ['Open Source (FOSS)', 'Homelab', 'UX Design', 'Webradio'] as const;
+  readonly values = ['accessibilité', 'sobriété', 'liberté logicielle'] as const;
+  readonly certifications: Certifications = [{
+    name: 'Opquast - niveau avancé',
+    score: 891,
+    goal: 'Bonne pratiques du web',
+  }];
+
+  readonly stack = techStack;
+  readonly timeline = new ExperienceTimeline();
+
+  constructor() {
+    // Mon parcours
+    this.timeline
+      .add(new Formation('Lycée Henri Becquerel', 2022, { level: 'Mention bien' }))
+      .add(new Formation('BUT MMI', 2022, 2025, { alias: 'Métiers du Multimédia et de l’Internet' }))
+      .add(
+        new Project('Dev. full stack + DevOps - Tous Inclus', {
+          year: {
+            from: 2024,
+            to: 2025,
+          },
+          skills: ['NestJs', 'TypeScript', 'Socket.io', 'CI/CD'],
+          context: `
+- Récolter des données utilisateur et faciliter leur lecture.
+- Mettre en place une stack technique avec notamment :
+  NestJS, React, Caddy, Docker, Socket.io et Directus.
+- Mettre en place une CI/CD avec des tests automatisés et un
+  environnement de staging.
+          `,
+        })
+      )
+      .add(new Experience('Stage developpeur back-end Symfony Groupe Progress', 2024))
+      .add(
+        new Experience('Alternance Publicis Sapient', 2025, 2026, {
+          job: 'Développeur front',
+          scopde: 'Design System',
+          context: `
+- Développer le DS (React + Web Components, CSS, Vite).
+- Repenser la philosophie DS côté consumer.
+- Présenter les avancées du DS lors de démos en anglais.
+- Mise en place de tests automatisés (TDD Jest + Percy).
+- Réaliser des audits d’accessibilité.
+- Rester agile (Framework SAFe).
+          `,
+        })
+      );
+  }
+
+  /**
+   * Quelques insights personnels
+   */
+  async introspect(): Promise<Insight[]> {
+    const rawInsights: Insight[] = [
+      { topic: 'FOSS', insight: 'L\open source m\'a beaucoup donné, à moi de lui rendre' },
+      { topic: 'devops', insight: 'Héberger ses données, c\'est un acte militant' },
+      { topic: 'free', insight: 'Information wants to be free.' },
+    ];
+
+    return rawInsights.map(({ topic, insight }) => ({
+      topic: topic.toUpperCase(),
+      insight: insight.charAt(0).toUpperCase() + insight.slice(1),
+    }));
+  }
+
+  /**
+   * Exporte le CV au format demandé dans un Blob
+   */
+  export(format: Formats): Blob {
+    const serialized = serializeAs(format);
+    return new Blob([serialized], { type: `text/${format}` });
+  }
+}
+
+export const leo = new Léo_PLANUS();
+
+// Exemple d’utilisation
+await leo.introspect().then(console.table);

@@ -1,0 +1,15 @@
+[data-theme="dark"] {
+  --debian-100: #fef1f1;
+  --debian-200: #fbc5c5;
+  --debian-300: #f99298;
+  --debian-400: #e6626f;
+  --debian-500: #c23f52;
+  --debian-600: #9f0833;
+  --debian-700: #87072b;
+  --debian-800: #6a051f;
+  --debian-900: #4c0414;
+  --debian-1000: #33020a;
+  --color-brand: var(--debian-500);
+  --color-bg: var(--gray-1000);
+  --color-text: var(--gray-200);
+}
