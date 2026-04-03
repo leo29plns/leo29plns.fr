@@ -85,7 +85,7 @@ class Léo_PLANUS implements HumanProfile {
       .add(
         new Experience('Alternance Publicis Sapient', 2025, 2026, {
           job: 'Développeur front',
-          scopde: 'Design System',
+          scope: 'Design System',
           context: `
 - Développer le DS (React + Web Components, CSS, Vite).
 - Repenser la philosophie DS côté consumer.
@@ -93,6 +93,17 @@ class Léo_PLANUS implements HumanProfile {
 - Mise en place de tests automatisés (TDD Jest + Percy).
 - Réaliser des audits d’accessibilité.
 - Rester agile (Framework SAFe).
+          `,
+        })
+      .add(
+        new Experience('Alternance Safran Electronics & Defense', 2026, new Date(), {
+          job: 'Développeur full-stack',
+          scope: 'Monorepo NX - Architecture - Déploiement',
+          context: `
+- Initialiser un monorepo Nx, avec apps Next.js et NestJS.
+- Créer une architecture front et back scalable.
+- Mettre en place la philosophie GitOps.
+- Piloter un projet et définir un Minimum Viable Product.
           `,
         })
       );
